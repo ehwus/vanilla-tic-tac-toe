@@ -2,12 +2,14 @@ class Game {
   constructor() {
     this.currentplayer = 'o';
     this.grid = ['', '', '', '', '', '', '', '', ''];
-    this.addCellEventListeners();
-    this.renderGrid();
+    this._addCellEventListeners();
+    this._renderGrid();
+    this._winner = false;
   }
 
   playRound(cellIndex) {
     if (this.grid[cellIndex] != '') return;
+    if (this._winner) return;
 
     this.grid[cellIndex] = this.currentplayer;
     if (this.currentplayer === 'o') {
@@ -15,18 +17,18 @@ class Game {
     } else {
       this.currentplayer = 'o';
     }
-    this.renderGrid();
+    this._renderGrid();
   }
 
-  renderGrid() {
+  _renderGrid() {
     this.grid.forEach((cell, index) => {
       let cellHTML = document.getElementById(`cell-${index}`);
       cellHTML.innerText = cell;
     });
-    this.renderCurrentPlayer();
+    this._renderCurrentPlayer();
   }
 
-  addCellEventListeners() {
+  _addCellEventListeners() {
     this.grid.forEach((cell, index) => {
       let cellHTML = document.getElementById(`cell-${index}`);
       cellHTML.addEventListener('click', () => {
@@ -35,7 +37,7 @@ class Game {
     });
   }
 
-  renderCurrentPlayer() {
+  _renderCurrentPlayer() {
     const currentPlayerHTML = document.getElementById('currentPlayer');
     currentPlayerHTML.innerHTML = `Current Player: ${this.currentplayer}`;
   }
