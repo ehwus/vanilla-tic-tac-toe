@@ -52,6 +52,8 @@ class Game {
 
   _checkForWinner() {
     const grid = this._grid;
+
+    // check rows
     if (grid[0] === grid[1] && grid[1] === grid[2]) {
       if (grid[0] != '' && grid[1] != '' && grid[2] != '') {
         this._winner = grid[0];
@@ -62,6 +64,56 @@ class Game {
     if (grid[3] === grid[4] && grid[4] === grid[5]) {
       if (grid[3] != '' && grid[4] != '' && grid[5] != '') {
         this._winner = grid[3];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    if (grid[6] === grid[7] && grid[7] === grid[8]) {
+      if (grid[6] != '' && grid[7] != '' && grid[8] != '') {
+        this._winner = grid[6];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    // check columns
+    if (grid[0] === grid[3] && grid[3] === grid[6]) {
+      if (grid[0] != '' && grid[3] != '' && grid[6] != '') {
+        this._winner = grid[0];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    if (grid[1] === grid[4] && grid[4] === grid[7]) {
+      if (grid[1] != '' && grid[4] != '' && grid[7] != '') {
+        this._winner = grid[1];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    if (grid[2] === grid[5] && grid[5] === grid[8]) {
+      if (grid[2] != '' && grid[5] != '' && grid[8] != '') {
+        this._winner = grid[2];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    // check diagonals
+    if (grid[0] === grid[4] && grid[4] === grid[8]) {
+      if (grid[0] != '' && grid[4] != '' && grid[8] != '') {
+        this._winner = grid[0];
+        this._renderCurrentStatus();
+        return;
+      }
+    }
+
+    if (grid[2] === grid[4] && grid[4] === grid[6]) {
+      if (grid[2] != '' && grid[4] != '' && grid[6] != '') {
+        this._winner = grid[2];
         this._renderCurrentStatus();
         return;
       }
