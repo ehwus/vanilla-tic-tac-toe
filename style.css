@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.container {
+  width: 95%;
+  height: 100%;
+  margin: auto;
+}
+
+.grid-row {
+  display: flex;
+}
+
+.cell {
+  height: 50px;
+  width: 50px;
+  border: thin solid black;
+}
