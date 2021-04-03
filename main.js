@@ -1,10 +1,6 @@
 class Game {
   constructor() {
-    this.currentplayer = 'o';
-    this.grid = ['', '', '', '', '', '', '', '', ''];
-    this._addCellEventListeners();
-    this._renderGrid();
-    this._winner = false;
+    this._startGame();
   }
 
   playRound(cellIndex) {
@@ -18,6 +14,12 @@ class Game {
       this.currentplayer = 'o';
     }
     this._renderGrid();
+  }
+
+  reset() {
+    if (window.confirm('Are you sure you want to reset?')) {
+      this._startGame();
+    }
   }
 
   _renderGrid() {
@@ -40,6 +42,16 @@ class Game {
   _renderCurrentPlayer() {
     const currentPlayerHTML = document.getElementById('currentPlayer');
     currentPlayerHTML.innerHTML = `Current Player: ${this.currentplayer}`;
+  }
+
+  _checkForWinner() {}
+
+  _startGame() {
+    this.currentplayer = 'o';
+    this.grid = ['', '', '', '', '', '', '', '', ''];
+    this._addCellEventListeners();
+    this._renderGrid();
+    this._winner = false;
   }
 }
 
