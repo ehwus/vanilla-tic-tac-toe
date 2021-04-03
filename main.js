@@ -43,7 +43,9 @@ class Game {
   _renderCurrentStatus() {
     const currentStatusHTML = document.getElementById('currentStatus');
 
-    if (this._winner) {
+    if (this._winner === 'draw') {
+      currentStatusHTML.innerHTML = "It's a draw! Reset to play again!";
+    } else if (this._winner) {
       currentStatusHTML.innerHTML = `Winner: ${this._winner}! Reset to play again!`;
     } else {
       currentStatusHTML.innerHTML = `Current Player: ${this.currentplayer}`;
@@ -117,6 +119,13 @@ class Game {
         this._renderCurrentStatus();
         return;
       }
+    }
+
+    // check for draw
+    if (grid.every((cell) => cell === 'O' || cell === 'X')) {
+      this._winner = 'draw';
+      this._renderCurrentStatus();
+      return;
     }
   }
 
